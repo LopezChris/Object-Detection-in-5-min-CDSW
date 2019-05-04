@@ -1,18 +1,3 @@
----
-title: Object Detection in 5 Minutes
-author: sandbox-team
-tutorial-id: XXX
-experience: Beginner
-persona: Data Scientist
-source: Hortonworks
-use case: Example (Data Discovery)
-technology: XXX
-release: hdp-3.0.1
-environment: Sandbox
-product: HDP
-series: XX > XX
----
-
 # Object Detection In 5 Minutes
 
 ## Introduction
@@ -23,7 +8,7 @@ During the 2018 [DataWorks summit](https://dataworkssummit.com/) Hortonworks sho
 
 The point of the exercise is to showcase the power of a [TensorFlow container managed by YARN](https://www.youtube.com/watch?v=naLTAsy0tx8) along with GPU polling for fast deployment to the [Jetson TX2](https://developer.nvidia.com/embedded/buy/jetson-tx2) module aboard the miniature car. The model deployed was then used to gather more data which helped refine the model even further.
 
-The clip below is an example of a classification model deployed on images collected by the Hortonworks miniature race car to recognize common objects around the Santa Clara, CA Hortonworks Headquarters. In fact, this is the same model that you will use in this tutorial to classify common objects.
+The clip below is an example of a classification model deployed on images collected by the Hortonworks miniature race car to recognize common objects around the Santa Clara, CA Cloudera offices. In fact, this is the same model that you will use in this tutorial to classify common objects.
 
 ![car-vision](assets/car-vision.gif)
 
@@ -63,78 +48,7 @@ In AI terms _Inference_ refers to the ability of a model to classify objects bas
 
 To the human brain this is an image of an elephant, albeit a drawing of one but an elephant nonetheless, we know this because we are able to make associations with previous shapes we have seen before and infer what type of animal we are observing. By the same token the [inception_resnet_v2](https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1) model has been trained on 600 categories (objects) which enable it to recognize things such as vehicles, humans, elephants, and even footwear based on previously seen image type data. The percentage displaced at the right of the object label is the percentage confidence that the prediction is correct.
 
-## Environment Setup
-
-You will need the following libraries installed:
-
-- **python3**
-- **numpy**
-- **matplotlib**
-- **tf-hub**
-- **tensorflow**
-
-~~~bash
-sudo apt install python3-dev python3-pip
-sudo pip3 install -U virtualenv 
-~~~
-
-~~~bash
-virtualenv --system-site-packages -p python3 ./venv # From home direcotry
-source ./venv/bin/activate
-
-pip3 install numpy
-pip3 install matplotlib
-pip3 install tensorflow
-pip3 install tf-hub
-~~~
-
-### Import The Data Set
-
-Now that our environment has all the dependencies required we can bring in images to be processed.
-
-Download the python script and data set that we will use for this tutorial:
-
-~~~bash
-cd ~/Downloads
-
-wget github.com/raw-pythoncode
-
-unzip objectDetection.zip
-
-cd object-detection
-~~~
-
-## Run The Object Detection Model
-
-To execute the python script that will execute the inference on the sample images first ensure that your virtual environment is active:
-
-~~~bash
-source ~/venv/bin/activate
-cd ~/Downloads/objectDetection/
-~~~
-
-next execute the python script on the folder you've just downloaded
-
-~~~bash
-python3 objectDetectionLocal.py --idir ~/Downloads/object-detection/images/ --odir ~/Downloads/object-detection/output/ --type jpg
-~~~
-
-While the model is running inference on the sample images you should see an output like this:
-
-~~~python
-bad-condition.jpg
-Found 100 objects.
-man-walking.jpg
-Found 100 objects.
-bad-condition2.jpg
-Found 0 objects.
-good-lighting-traffic2.jpg
-Found 10 objects.
-good-lighting-traffic.jpg
-Found 100 objects.
-~~~
-
-## Results
+## Discussion
 
 The first image is of a man on the sidewalk of a busy street, as we can see the lighting condition is good and the focus is sharp on the subject, these conditions allow the model to infer on the objects in the picture with relatively high precision.
 
@@ -154,7 +68,7 @@ The last image in the set shows that our model was not able to identify any obje
 
 ![bad-condition-output](assets/bad-condition2-output.jpg)
 
-## Role of Big Data
+## Role of Big Data in AI
 
 It is clear then that we must accrue as much data as possible for useful models. There are many factors that we must bear in mind when collecting great deals chief amongst them are:
 
@@ -172,6 +86,74 @@ Hadoop data lakes with GPUs introduces the ability to consolidate Petabytes of d
 
 ![bigdata.jpg](assets/bigdata.jpg)
 
+## Run The Object Detection Model
+
+To execute the python script that will execute the inference on the sample images first ensure that your virtual environment is active:
+
+~~~bash
+source ~/venv/bin/activate
+cd ~/Downloads/objectDetection/
+~~~
+
+next execute the python script on the folder you've just downloaded
+
+~~~bash
+python3 objectDetectionLocal.py --idir ~/Downloads/object-detection/images/ --odir ~/Downloads/object-detection/output/ --type jpg
+~~~
+
+While the model is running inference on the sample images you should see an output like this:
+
+~~~text
+bad-condition.jpg
+Found 100 objects.
+man-walking.jpg
+Found 100 objects.
+bad-condition2.jpg
+Found 0 objects.
+good-lighting-traffic2.jpg
+Found 10 objects.
+good-lighting-traffic.jpg
+Found 100 objects.
+~~~
+
+## Environment set up
+
+The first step tp get started is to open the workbench. Click the **Open Workbench** button at the top right corner of the project page ![openw](assets/openw.jpg) once there highlight the lines below and right click them then select `Run Line(s)`
+
+![run-lines](assets/run-lines.jpg)
+
+## Install needed packages
+
+~~~bash
+!pip3 install --upgrade numpy
+!pip3 install --upgrade matplotlib
+!pip3 install --upgrade tensorflow
+!pip3 install --upgrade tensorflow-hub
+!pip3 install --upgrade matplotlib
+!pip3 install --upgrade ipykernel
+!pip3 install --upgrade pillow
+~~~
+
+## Run the 
+
+~~~bash
+!python3 object-detection/objectDetectionLocal.py --idir ~/object-detection/images/ --odir ~/object-detection/output/ --type jpg
+~~~
+
+~~~python
+from IPython.display import Image
+image = Image('/home/cdsw/object-detection/output/bad-condition.jpg')
+image
+
+image = Image('/home/cdsw/object-detection/output/man-walking.jpg')
+image
+
+~~~
+
+
+
+
+
 ## Summary
 
 Congratulations, now you know how to run inference using a pre-trained model. Naturally, you might want to detect custom objects using your own data, on the [CNN Transfer Learning Tutorial](James-tutorial) you will learn to do just that by first training a model to identify custom objects.
@@ -188,7 +170,7 @@ Congratulations, now you know how to run inference using a pre-trained model. Na
 
 Because the model has been pretrained on 600 categories it can be really fun to take images of your own and observe the output, and once you have the python script on your {SB} running inference on your own images is fairly simple.
 
-Simply change the parameters in the python script in the `object-detection` folder we unzipped earlier:
+Simply change the parameters in the python script in the `object-detection` folder:
 
 ~~~bash
 python3 objectDetectionLocal.py --idir {path_to_input_directory} --odir {path_to_output_directory} --type {image_type (e.g. jpg, png, jpeg)}

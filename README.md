@@ -116,7 +116,20 @@ and once it is done executing your commands and is ready for the next input it w
 
 ## Run the object detection model
 
-Select and run the line below to run inference on the images we previously highligted
+Let's begin by inspecting the images that we will use to run inference, they are simply the unedited images featured earlier in the tutorial.
+
+~~~python
+from os import listdir
+from IPython.display import Image, display
+output_path = '/home/cdsw/object-detection/images/'
+
+for file_name in os.listdir(output_path):
+  if file_name.endswith("jpg"):
+    image_path = output_path + file_name
+    display(Image(image_path))
+~~~
+
+Next, select and run the line below to run inference on out sample images
 
 ~~~bash
 !python3 /home/cdsw/object-detection/objectDetectionLocal.py --idir /home/cdsw/object-detection/images/ --odir /home/cdsw/object-detection/output/ --type jpg
@@ -124,14 +137,27 @@ Select and run the line below to run inference on the images we previously highl
 
 ## Show image results
 
+Once inference has been run on the sample images run the python script below to show the results:
+
 ~~~python
 from os import listdir
 from IPython.display import Image, display
 output_path = '/home/cdsw/object-detection/output/'
 
 for file_name in os.listdir(output_path):
-  image_path = output_path + file_name
-  display(Image(image_path))
+  if file_name.endswith("jpg"):
+    image_path = output_path + file_name
+    display(Image(image_path))
+~~~
+
+## Detect objects with your own dataset
+
+Because the model has been pretrained on 600 categories it can be really fun to take images of your own and observe the output, and once you have the python script on your {SB} running inference on your own images is fairly simple.
+
+Simply change the parameters in the python script in the `object-detection` folder:
+
+~~~bash
+python3 objectDetectionLocal.py --idir {path_to_input_directory} --odir {path_to_output_directory} --type {image_type (e.g. jpg, png, jpeg)}
 ~~~
 
 ## Summary
@@ -145,13 +171,3 @@ Congratulations, now you know how to run inference using a pre-trained model. Na
 - [TensorFlow on YARN](https://hortonworks.com/blog/distributed-tensorflow-assembly-hadoop-yarn/)
 - [TensorFlow Documentation](https://www.tensorflow.org/api_docs/)
 - [TensorFlow Hub Documentation](https://www.tensorflow.org/hub/api_docs/python/hub)
-
-### Appendix A: Detect objects with your own dataset
-
-Because the model has been pretrained on 600 categories it can be really fun to take images of your own and observe the output, and once you have the python script on your {SB} running inference on your own images is fairly simple.
-
-Simply change the parameters in the python script in the `object-detection` folder:
-
-~~~bash
-python3 objectDetectionLocal.py --idir {path_to_input_directory} --odir {path_to_output_directory} --type {image_type (e.g. jpg, png, jpeg)}
-~~~

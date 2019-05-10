@@ -122,6 +122,8 @@ Select and run the line below to run inference on the images we previously highl
 !python3 /home/cdsw/object-detection/objectDetectionLocal.py --idir /home/cdsw/object-detection/images/ --odir /home/cdsw/object-detection/output/ --type jpg
 ~~~
 
+## Show image results
+
 ~~~python
 from os import listdir
 from IPython.display import Image, display

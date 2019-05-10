@@ -119,16 +119,17 @@ and once it is done executing your commands and is ready for the next input it w
 Select and run the line below to run inference on the images we previously highligted
 
 ~~~bash
-!python3 object-detection/objectDetectionLocal.py --idir ~/object-detection/images/ --odir ~/object-detection/output/ --type jpg
+!python3 /home/cdsw/object-detection/objectDetectionLocal.py --idir /home/cdsw/object-detection/images/ --odir /home/cdsw/object-detection/output/ --type jpg
 ~~~
 
 ~~~python
-from IPython.display import Image
-image = Image('/home/cdsw/object-detection/output/bad-condition.jpg')
-image
+from os import listdir
+from IPython.display import Image, display
+output_path = '/home/cdsw/object-detection/output/'
 
-image = Image('/home/cdsw/object-detection/output/man-walking.jpg')
-image
+for file_name in os.listdir(output_path):
+  image_path = output_path + file_name
+  display(Image(image_path))
 ~~~
 
 ## Summary

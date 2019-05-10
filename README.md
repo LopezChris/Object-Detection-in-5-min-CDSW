@@ -150,7 +150,9 @@ for file_name in os.listdir(output_path):
     display(Image(image_path))
 ~~~
 
-## Detect objects with your own dataset
+![sample-img-output](assets/sample-img-output.jpg)
+
+## Detect objects with your own data-set
 
 Because the model has been pretrained on 600 categories it can be really fun to take images of your own and observe the output, and once you have the python script on your {SB} running inference on your own images is fairly simple.
 

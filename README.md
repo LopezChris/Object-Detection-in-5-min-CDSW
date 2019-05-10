@@ -88,37 +88,9 @@ Hadoop data lakes with GPUs introduces the ability to consolidate Petabytes of d
 
 ## Run The Object Detection Model
 
-To execute the python script that will execute the inference on the sample images first ensure that your virtual environment is active:
+### Start the workbench
 
-~~~bash
-source ~/venv/bin/activate
-cd ~/Downloads/objectDetection/
-~~~
-
-next execute the python script on the folder you've just downloaded
-
-~~~bash
-python3 objectDetectionLocal.py --idir ~/Downloads/object-detection/images/ --odir ~/Downloads/object-detection/output/ --type jpg
-~~~
-
-While the model is running inference on the sample images you should see an output like this:
-
-~~~text
-bad-condition.jpg
-Found 100 objects.
-man-walking.jpg
-Found 100 objects.
-bad-condition2.jpg
-Found 0 objects.
-good-lighting-traffic2.jpg
-Found 10 objects.
-good-lighting-traffic.jpg
-Found 100 objects.
-~~~
-
-## Environment set up
-
-The first step tp get started is to open the workbench. Click the **Open Workbench** button at the top right corner of the project page ![openw](assets/openw.jpg) once there highlight the lines below and right click them then select `Run Line(s)`
+The first step to get started is to open the workbench. Click the **Open Workbench** button at the top right corner of the project page ![openw](assets/openw.jpg). Once your workbench has started scroll back down to this section and highlight the lines below, then right click them and select `Run Line(s)`
 
 ![run-lines](assets/run-lines.jpg)
 
@@ -134,7 +106,17 @@ The first step tp get started is to open the workbench. Click the **Open Workben
 !pip3 install --upgrade pillow
 ~~~
 
-## Run the 
+Wait for these dependencies to finish installing, note that while your libraries are installing the command line on the right side of the workbench will glow red indicating that it is currently busy
+
+![busy](assets/busy.jpg)
+
+and once it is done executing your commands and is ready for the next input it will glow green
+
+![not-busy](assets/not-busy.jpg)
+
+## Run the object detection model
+
+Select and run the line below to run inference on the images we previously highligted
 
 ~~~bash
 !python3 object-detection/objectDetectionLocal.py --idir ~/object-detection/images/ --odir ~/object-detection/output/ --type jpg
@@ -147,12 +129,7 @@ image
 
 image = Image('/home/cdsw/object-detection/output/man-walking.jpg')
 image
-
 ~~~
-
-
-
-
 
 ## Summary
 

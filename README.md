@@ -24,8 +24,7 @@ We will run CNN inferences to the images below and explore how difference lighti
 
 ## Prerequisites
 
-- Downloaded and deployed the [Hortonworks Data Platform (HDP)](https://hortonworks.com/downloads/#sandbox) Sandbox
-- [TensorFlow on YARN](http://example.com/link/to/required/tutorial)
+- Launched and signed on to a [CDSW Instance](https://www.cloudera.com/products/data-science-and-engineering/data-science-workbench.html)
 
 ## Outline
 

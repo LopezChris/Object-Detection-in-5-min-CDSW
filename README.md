@@ -89,11 +89,13 @@ Hadoop data lakes with GPUs introduces the ability to consolidate Petabytes of d
 
 ### Start the workbench
 
-The first step to get started is to open the workbench. Click the **Open Workbench** button at the top right corner of the project page ![openw](assets/openw.jpg). Once your workbench has started scroll back down to this section and highlight the lines below, then right click them and select `Run Line(s)`
-
-![run-lines](assets/run-lines.jpg)
+The first step to get started is to open the workbench. Click the **Open Workbench** button at the top right corner of the project page ![openw](assets/openw.jpg). 
 
 ## Install needed packages
+
+Once your workbench has started scroll back down to this section and highlight the lines below, then right click them and select `Run Line(s)`
+
+![run-lines](assets/run-lines.jpg)
 
 ~~~bash
 !pip3 install --upgrade numpy
@@ -115,7 +117,9 @@ and once it is done executing your commands and is ready for the next input it w
 
 ## Run the object detection model
 
-Let's begin by inspecting the images that we will use to run inference, they are simply the unedited images featured earlier in the tutorial.
+Let's begin by inspecting the images that we will use to run inference, they are simply the unedited images featured earlier in the tutorial:
+
+![show-sample-images](assets/show-sample-images.jpg)
 
 ~~~python
 from os import listdir
@@ -128,7 +132,9 @@ for file_name in os.listdir(output_path):
     display(Image(image_path))
 ~~~
 
-Next, select and run the line below to run inference on out sample images
+Next, select and run the line below to run inference on out sample images:
+
+![run-inference](assets/run-inference.jpg)
 
 ~~~bash
 !python3 /home/cdsw/object-detection/objectDetectionLocal.py --idir /home/cdsw/object-detection/images/ --odir /home/cdsw/object-detection/output/ --type jpg
